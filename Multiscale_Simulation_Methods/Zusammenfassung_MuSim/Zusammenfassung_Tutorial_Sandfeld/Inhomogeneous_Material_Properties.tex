@@ -1,0 +1,225 @@
+\documentclass[english]{scrartcl}
+ 
+% ++++++++++++++++++++++++++++  PACKAGES  ++++++++++++++++++++++++++++++++++++++++ 
+ 
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+%\usepackage{lmodern}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+%\usepackage{multicol}
+%\usepackage[printonlyused]{acronym}
+%\usepackage{framed}
+\usepackage{color}
+\usepackage{gensymb}
+\usepackage{csquotes}
+
+\setcounter{MaxMatrixCols}{15}
+\setlength{\parindent}{0pt}				% sets indentation space to 0
+
+% ++++++++++++++++++++ NEW COMMANDS AND ENVIRONMENTS ++++++++++++++++++++++++
+
+\renewcommand{\vec}[1]{\boldsymbol{#1}}
+\newcommand{\minus}{{\;} - {\;}}
+\newcommand{\plus}{{\;} + {\;}}
+\newcommand{\tr}{\text{tr}}
+\newcommand{\dev}{\text{dev}}
+
+\newenvironment{myitemize}{ \begin{itemize}
+		\setlength{\itemsep}{0pt}
+		\setlength{\parskip}{0pt}
+		\setlength{\parsep}{0pt}     }
+	{ \end{itemize}                  }
+
+% ++++++++++++++++++++++++++++ BIBLIOGRAPHY +++++++++++++++++++++++++++++++++
+
+\bibliographystyle{unsrt}%{backend=biber,style=numeric]{biblatex}
+
+% +++++++++++++++++++++++ Title and Information +++++++++++++++++++++++++++++
+
+\title{Inhomogeneous Material Properties in Solid Mechanical Systems}
+\date{Thore Bergmann \\
+	Master Studies 2015-2017 \\
+	$ {\;} $ \\
+	\includegraphics*[height = 3cm]{logo} \\
+	$ {\;} $ \\
+	Advisor: Dr. Stefan Sandfeld}
+
+\begin{document}	
+
+\maketitle
+\clearpage
+
+\section*{Continuum Mechanical Foundations and Notations}
+
+
+\subsubsection*{The von Mises Stress or \enquote{Equivalent Tensile Stress}}
+
+How can one compare two stresses?
+\begin{myitemize}
+	\item Cauchy stress tensor with 9 compoenents
+	\begin{equation}
+	\sigma = \begin{bmatrix}
+	\sigma_{11}	& \sigma_{12}	 & \sigma_{13}	 \\ 
+	\sigma_{21}	& \sigma_{22}	 & \sigma_{23}	 \\ 
+	\sigma_{31}	& \sigma_{32}	 & \sigma_{33}	
+	\end{bmatrix} = \begin{bmatrix}
+	\sigma_{x}	& \tau_{xy}	 & \tau_{xz}	 \\ 
+	\tau_{yx}	& \sigma_{y}	 & \tau_{yz}	 \\ 
+	\tau_{zx}	& \tau_{zy}	 & \sigma_{z}	
+	\end{bmatrix} \nonumber
+	\end{equation}
+	
+	\item The von Mises stress or equivalent tensile stress
+	\begin{equation}
+	\sigma^{2}_{v} = \dfrac{1}{2} \left [ (\sigma_{11} \minus \sigma_{22})^{2} + (\sigma_{11} \minus \sigma_{22})^{2} + (\sigma_{11} \minus \sigma_{22})^{2} \plus 6 ( \sigma^{2}_{23} + \sigma^{2}_{31} + \sigma^{2}_{12}) \right ] \nonumber
+	\end{equation}
+	
+\end{myitemize}
+
+What are the properties of the von Mises stress?
+\begin{myitemize}
+	\item scalar stress measure
+	\item two stress states with equal distortion energy have equal von Mises stresses 
+	\item used to formulate the von Mises yield criterion
+\end{myitemize}
+
+What is the von Mises yield criterion?
+
+\begin{myitemize}
+	\item criterion, which is used to predict yielding of materials
+	\item begins when the second deviatoric stress inavriant $ J_{2} $ rechaes a critical value
+	\begin{equation*}
+	\sigma_{v} = \sigma_{y} = \sqrt{3J_{2}}
+	\end{equation*}
+	\item stress values larger than the yield stress cannot be reached
+\end{myitemize}
+
+In which space does the von Mises yield surface live in and how does the -- theoretical -- surface look like?
+
+\begin{myitemize}
+	\item in the principal stress space
+	\item like a cylinder (with the rotational axis: $ \sigma_{x} =  \sigma_{y} =  \sigma_{z} $ )
+\end{myitemize}
+
+What are principal stresses?
+
+\begin{myitemize}
+	\item the stresses on the diagonal line of the Cauchy stress tensor
+\end{myitemize}
+
+What is the work conjugate counterpart of the equivalent stress and how is it defined?
+
+\begin{myitemize}
+	\item equivalent strain or von Mises strain $ \varepsilon_{eq} $
+	\begin{equation*}
+		\varepsilon_{eq} = \sqrt{\dfrac{2}{3} \vec{\varepsilon}^{\text{dev}} : \vec{\varepsilon}^{\text{dev}}}
+	\end{equation*}
+	with 
+	\begin{equation*}
+		\vec{\varepsilon}^{\text{dev}} = \vec{\varepsilon} \minus \dfrac{1}{3} \text{tr}(\vec{\varepsilon}) \vec{1}
+	\end{equation*}
+\end{myitemize}
+
+What are the first and the second invariant of the strain tensor?
+	\begin{equation*}
+		J_{1} = \tr (\vec{\varepsilon}), \qquad \qquad J_{2} = \dfrac{1}{2} \sigma^{\text{dev}} : \sigma^{\dev}
+	\end{equation*}
+\begin{myitemize}
+	\item the second invariant can also be defined in several other ways (e.g. in dependence of the strain tensor itself)
+\end{myitemize}
+
+What is the expression for the equivalent stress in terms of the deviatoric parts of the stress tensor?
+\begin{equation*}
+\sigma_{\text{eq}} = \sqrt{\dfrac{3}{2} \vec{\sigma}^{\text{\dev}} : \vec{\sigma}^{\text{\dev}}}
+\end{equation*}
+
+What are the plain strain conditions and why are they how they are?
+\begin{myitemize}
+	\item the length of a structure in one direction is much larger than in the other two directions
+	\item strains associated with the larger direction are constrained by the nearby material and are small compared to the cross-sectional strains
+\end{myitemize}
+
+How do the strain and stress tensor lokk like in the plane strain approximation?
+\begin{equation*}
+\vec{\varepsilon} = \begin{bmatrix}
+\varepsilon_{11}	& \varepsilon_{12}	 & 0	 \\ 
+\varepsilon_{21}	& \varepsilon_{22}	 & 0	 \\ 
+0	& 0	 & 0	
+\end{bmatrix},  \qquad \qquad 
+\vec{\sigma} = \begin{bmatrix}
+\sigma_{11}	& \sigma_{12}	 & 0	 \\ 
+\sigma_{21}	& \sigma_{22}	 & 0	 \\ 
+0	& 0 & \sigma_{33}	
+\end{bmatrix} 
+\end{equation*}
+
+What is elastic material behaviour?
+\begin{myitemize}
+	\item the path during loading is also followed during unloading
+	\item reversible behaviour
+\end{myitemize}
+
+
+What is plastic material behaviour?
+\begin{myitemize}
+	\item residual irreversible deformation for the loading - unloading experiment
+\end{myitemize}
+
+
+What is ideal plastic behaviour?
+\begin{myitemize}
+	\item irreversible plastic deformation occurs when a threshold is reached (yield stress) 
+	\item no hardening (stress stays constant for increasing strain)
+	\item except for this the behaviour is ideally elastic 
+\end{myitemize}
+
+\textcolor{blue}{What is the yield condition for ideally plastic behaviour?}
+\begin{equation*}
+	f(\sigma, \sigma_{y}) \le 0
+\end{equation*}
+
+Of which term is the total strain made of?
+\begin{myitemize}
+	\item an elastic part and a plastic part
+	\begin{equation*}
+		\varepsilon = \varepsilon^{e}  \plus \varepsilon^{p}
+	\end{equation*}
+\end{myitemize}
+
+How is hardening defined in the elastic-plastic framework?
+\begin{myitemize}
+	\item threshold evolves with loading history
+\end{myitemize}
+
+\textcolor{blue}{What is the difference between isotropic and kinematic hardening?} \\
+\textbf{(Bilder)} \\
+
+What is the relationship between effective plastic strain $ \bar{\varepsilon}^{p} $ and effective stress $ \bar{\sigma} $ under linear hardening behaviour?
+\begin{equation*}
+\Delta \bar{\varepsilon}^{p} = \dfrac{\bar{\sigma}(t) - \sigma_{y}}{E^{p}}, \qquad \qquad E^{p} = \dfrac{E \; E_{T}}{E \minus E_{T}}
+\end{equation*}
+\begin{myitemize}
+	\item $ E^{T} $: hardening modulus \textbf{(Bilder)}
+\end{myitemize}
+
+What is necessary to describe the effective stress of isotropic linear hardening?
+\begin{myitemize}
+	\item the hardening modulus $ E^{T} $ \textbf{(Bilder)}
+	\item $ \bar{\sigma} $ can be expressed as a function of $ E^{T} $ only 
+\end{myitemize}
+
+\textcolor{blue}{What is the difference between yield stress and flow stress?}
+
+
+\section*{Averaging Elastic Material Properties with FEM}
+
+\textcolor{blue}{Axel fragen ob das wichtig ist...} \\
+
+\section*{Modelling of Shear Band Formation}
+
+...see other summaries (e.g. Statistical Analysis in Materials Simulation)
+
+\end{document}

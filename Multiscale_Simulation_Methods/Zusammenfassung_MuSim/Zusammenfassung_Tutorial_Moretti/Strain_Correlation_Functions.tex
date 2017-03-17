@@ -1,0 +1,125 @@
+\documentclass[english]{scrartcl}
+ 
+% ++++++++++++++++++++++++++++  PACKAGES  ++++++++++++++++++++++++++++++++++++++++ 
+ 
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+%\usepackage{lmodern}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+%\usepackage{multicol}
+%\usepackage[printonlyused]{acronym}
+%\usepackage{framed}
+\usepackage{color}
+\usepackage{gensymb}
+\usepackage{csquotes}
+
+\setcounter{MaxMatrixCols}{15}
+\setlength{\parindent}{0pt}				% sets indentation space to 0
+
+% ++++++++++++++++++++ NEW COMMANDS AND ENVIRONMENTS ++++++++++++++++++++++++
+
+\renewcommand{\vec}[1]{\boldsymbol{#1}}
+\newcommand{\minus}{{\;} - {\;}}
+\newcommand{\plus}{{\;} + {\;}}
+\newcommand{\tr}{\text{tr}}
+\newcommand{\dev}{\text{dev}}
+
+\newenvironment{myitemize}{ \begin{itemize}
+		\setlength{\itemsep}{0pt}
+		\setlength{\parskip}{0pt}
+		\setlength{\parsep}{0pt}     }
+	{ \end{itemize}                  }
+
+% ++++++++++++++++++++++++++++ BIBLIOGRAPHY +++++++++++++++++++++++++++++++++
+
+\bibliographystyle{unsrt}%{backend=biber,style=numeric]{biblatex}
+
+% +++++++++++++++++++++++ Title and Information +++++++++++++++++++++++++++++
+
+\title{Statistical Analysis in Materials Simulation}
+\date{Thore Bergmann \\
+	Master Studies 2015-2017 \\
+	$ {\;} $ \\
+	\includegraphics*[height = 3cm]{logo} \\
+	$ {\;} $ \\
+	Advisor: Paolo Moretti}
+
+\begin{document}	
+
+\maketitle
+\clearpage
+
+\section*{Strain Correlation Functions}
+
+When are strain correlation functions needed?
+\begin{myitemize}
+	\item analysing tensile tests of amorphous specimen
+	\subitem - formation of localized shear bands
+\end{myitemize}
+
+What is the prerequisite for shear band formation?
+\begin{myitemize}
+	\item $ J_{2} $-plasticity
+\end{myitemize}
+
+How is the yield stress of the gaussian quadrature points in an FEM simulation of an amorphous material?
+\begin{myitemize}
+	\item randomly uniform distributed
+\end{myitemize}
+
+Why do shear bands form at 45$ ^{\circ} $-angle?
+\begin{myitemize}
+	\item along this direction the shear strain is maximum \textcolor{blue}{(is that true?)}
+\end{myitemize}
+
+What do the shear bands tell us?
+\begin{myitemize}
+	\item that the shear strain is maximum in 45$ ^{\circ} $-angle direction w.r.t. the loading direction
+\end{myitemize}
+
+What is the (spacial) strain correlation function?
+\begin{myitemize}
+	\item a quantitative tool that allows to detect correlations without the need for visual inspection of the simulation result
+\end{myitemize}
+
+How do you build the strain correlation function?
+\begin{myitemize}
+	\item by comparing the deviation of strain at two points from the average strain
+	\begin{equation*}
+		C(s_{x}, s_{y}) = \left < [\varepsilon(\vec{r}) - \varepsilon ] [\varepsilon(\vec{r+\vec{s}}) - \varepsilon ] \right >_{r}
+	\end{equation*}
+\end{myitemize}
+
+How do you know from the strain correlation function plot that there is a correlation in a certain direction?
+\begin{myitemize}
+	\item the correlations are long ranged
+\end{myitemize}
+
+How is the algorithm for calculating the strain correlation function?
+\begin{myitemize}
+	\item choose an inner box of the specimen which you want to visualize (some distance to the boundary is needed for algorithmic convenience)
+	\item begin with one element in the inner box and calculate the strain correlations for this point with all other points inside a certain distance (e.g. inside a square or circle)
+	\item loop through all the points of the inner box
+	\item take the average of the correlations for all the points of the inner box
+\end{myitemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
